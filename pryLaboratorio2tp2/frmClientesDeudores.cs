@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.OleDb;
+using System.IO;
 
 namespace pryLaboratorio2tp2
 {
@@ -23,6 +25,14 @@ namespace pryLaboratorio2tp2
             x.ListarDeudores(dgvConsultaDatos);
             lblCantC.Text = x.CantidadDeudores.ToString();
             lblTot.Text = x.TotalDeuda.ToString();
+           // lblProm.Text = (x.TotalDeuda / x.CantidadDeudores).ToString();
+        }
+
+        private void btnReportar_Click(object sender, EventArgs e)
+        {
+            clsClientes x = new clsClientes();
+            x.ReporteCliente();
+            MessageBox.Show("Reporte generado con exito");
         }
     }
 }

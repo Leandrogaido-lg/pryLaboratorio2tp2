@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data; 
 using System.Data.OleDb;
 using System.Windows.Forms;
+using System.IO;
 
 
 
@@ -94,6 +95,56 @@ namespace pryLaboratorio2tp2
             }
          }
 
+        public void ReporteCliente()
+        {
+            try
+            {
+                conexion.ConnectionString = cadenaConexion;
+                conexion.Open();
 
+                comando.Connection = conexion;
+                comando.CommandType = CommandType.Text;
+                comando.CommandText = Tabla;
+
+                OleDbDataReader DR = comando.ExecuteReader();
+                StreamWriter AD = new StreamWriter("ReporteClientes.csv",false,Encoding.UTF8);
+
+                AD.WriteLine("Listado de clientes\n");
+                AD.WriteLine("Codigo; Nombre; Deuda");
+
+                cantidad = 0;
+                deuda = 0;
+               
+
+
+                if (DR.HasRows)
+                {
+                    while (DR.Read())
+                    {
+                        AD.Write(DR.GetInt32(0));
+                        AD.Write(";");
+                        AD.Write(DR.GetString(1));
+                        AD.Write(";");
+                        AD.WriteLine(DR.GetDecimal(2));
+
+                            cantidad++;
+                            deuda = deuda + DR.GetDecimal(2);
+                        
+                    }
+                    AD.Write("Cantidad de clientes:;;");
+                    AD.WriteLine(cantidad);
+                    AD.Write("Cantidad de deudores:;;");
+                    AD.WriteLine(deuda);
+                    AD.Write("Promedio de deuda:;;");
+                    AD.WriteLine(deuda/cantidad);
+                    AD.Close();
+                }
+                conexion.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+        }
     }   
 }
