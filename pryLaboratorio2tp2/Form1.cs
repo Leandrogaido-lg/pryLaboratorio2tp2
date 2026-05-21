@@ -16,5 +16,17 @@ namespace pryLaboratorio2tp2
         {
             InitializeComponent();
         }
+
+        private void listadoDeClientesDeudoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form cd = new frmClientesDeudores();
+            cd.Show();
+        }
+
+        private void listadoDeTodosLosClientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form td = new frmListadoClientes();
+            td.Show();
+        }
     }
 }

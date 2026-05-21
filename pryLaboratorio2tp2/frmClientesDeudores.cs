@@ -16,5 +16,13 @@ namespace pryLaboratorio2tp2
         {
             InitializeComponent();
         }
+
+        private void btnListarDeudores_Click(object sender, EventArgs e)
+        {
+            clsClientes x = new clsClientes();
+            x.ListarDeudores(dgvConsultaDatos);
+            lblCantC.Text = x.CantidadDeudores.ToString();
+            lblTot.Text = x.TotalDeuda.ToString();
+        }
     }
 }

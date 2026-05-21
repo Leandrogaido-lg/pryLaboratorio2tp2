@@ -20,10 +20,17 @@ namespace pryLaboratorio2tp2
         private String cadenaConexion = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=Clientes.mdb";
         private String Tabla = "Cliente";
 
-        int cantidad = 0;
-        decimal deuda = 0;
 
-
+        private Decimal deuda;
+        private Int32 cantidad;
+        public Decimal TotalDeuda
+        {
+            get { return deuda; }
+        }
+        public Int32 CantidadDeudores
+        {
+            get { return cantidad; }
+        }
         public void Listar(DataGridView grilla)
         {
             try
