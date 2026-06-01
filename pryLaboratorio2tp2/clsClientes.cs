@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data; 
 using System.Data.OleDb;
-using System.Windows.Forms;
 using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 
 
@@ -24,6 +25,13 @@ namespace pryLaboratorio2tp2
 
         private Decimal deuda;
         private Int32 cantidad;
+
+        private Int32 idCli;
+        private String nom;
+        private Decimal deu;
+        private Decimal lim;
+        private Int32 idAu;
+
         public Decimal TotalDeuda
         {
             get { return deuda; }
@@ -32,6 +40,36 @@ namespace pryLaboratorio2tp2
         {
             get { return cantidad; }
         }
+        public Int32 IDCliente
+        {
+            get { return idCli; }
+            set { idCli = value; }
+        }
+
+        public String Nombre
+        {
+            get { return nom; }
+            set { nom = value; }
+        }
+
+        public Decimal Deuda
+        {
+            get { return deu; }
+            set { deu = value; }
+        }
+
+        public Decimal Limite
+        {
+            get { return lim; }
+            set { lim = value; }
+        }
+
+        public Int32 IDAutomovil
+        {
+            get { return idAu; }
+            set { idAu = value; }
+        }
+        
         public void Listar(DataGridView grilla)
         {
             try
@@ -145,6 +183,75 @@ namespace pryLaboratorio2tp2
             {
                 MessageBox.Show(e.ToString());
             }
+        }
+        public void Buscar(Int32 idCliente)
+        {
+            try
+            {
+                conexion.ConnectionString = cadenaConexion;
+                conexion.Open();
+
+                comando.Connection = conexion;
+                comando.CommandType = CommandType.TableDirect;
+                comando.CommandText = Tabla;
+
+                OleDbDataReader DR = comando.ExecuteReader();
+
+                if (DR.HasRows)
+                {
+                    while (DR.Read())
+                    {
+                        if (DR.GetInt32(0) == idCliente)
+                        {
+                            idCli = DR.GetInt32(0); //CARGAMOS LOS DATOS
+                            nom = DR.GetString(1);
+                            deu = DR.GetDecimal(2);
+                            lim = DR.GetDecimal(3);
+                            idAu = DR.GetInt32(4);
+                        }
+                    }
+                }
+
+                conexion.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+        }
+        public void Agregar()
+        {
+            try
+            {
+                conexion.ConnectionString = cadenaConexion;
+                conexion.Open();
+
+                comando.Connection = conexion;
+                comando.CommandType = CommandType.TableDirect;
+                comando.CommandText = Tabla;
+
+                adaptador = new OleDbDataAdapter(comando);
+                DataSet DS = new DataSet();
+                adaptador.Fill(DS, Tabla);
+
+                DataTable tabla = DS.Tables[Tabla];
+                DataRow fila = tabla.NewRow();
+
+                fila["Nombre"] = nom;
+                fila["Deuda"] = 0;
+                fila["Límite"] = lim;
+                fila["idAutomovil"] = idAu;
+
+                tabla.Rows.Add(fila);
+                OleDbCommandBuilder ConciliaCambios = new OleDbCommandBuilder(adaptador);
+                adaptador.Update(DS, Tabla);//se efectua el camnio de datos
+                conexion.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+
         }
     }   
 }

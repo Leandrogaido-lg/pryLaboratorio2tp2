@@ -28,5 +28,22 @@ namespace pryLaboratorio2tp2
             Form td = new frmListadoClientes();
             td.Show();
         }
+
+        private void busquedaClientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form bc = new frmBusquedaCliente();
+            bc.Show();
+        }
+
+        private void agregarNuevosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form ag = new frmAgregarClientes();
+            ag.Show();
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
