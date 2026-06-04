@@ -39,6 +39,7 @@
             this.listadoDeClientesDeudoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listadoDeClientesOrdenadosPorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.busquedaClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.agregarNuevoClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,6 +86,7 @@
             this.listadoDeTodosLosClientesToolStripMenuItem,
             this.listadoDeClientesDeudoresToolStripMenuItem,
             this.listadoDeClientesOrdenadosPorToolStripMenuItem,
+            this.agregarNuevoClienteToolStripMenuItem,
             this.busquedaClientesToolStripMenuItem});
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
             this.clientesToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
@@ -130,10 +132,17 @@
             this.busquedaClientesToolStripMenuItem.Text = "Busqueda Clientes...";
             this.busquedaClientesToolStripMenuItem.Click += new System.EventHandler(this.busquedaClientesToolStripMenuItem_Click);
             // 
+            // agregarNuevoClienteToolStripMenuItem
+            // 
+            this.agregarNuevoClienteToolStripMenuItem.Name = "agregarNuevoClienteToolStripMenuItem";
+            this.agregarNuevoClienteToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.agregarNuevoClienteToolStripMenuItem.Text = "Agregar Nuevo Cliente";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::pryLaboratorio2tp2.Properties.Resources.cute_simple_aesthetic_desktop_5120_x_2880_war0w065r59ldpzr;
             this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -160,6 +169,7 @@
         private System.Windows.Forms.ToolStripMenuItem datosDelDesarroladorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem busquedaClientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem agregarNuevoClienteToolStripMenuItem;
     }
 }
 

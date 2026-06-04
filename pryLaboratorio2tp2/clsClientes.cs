@@ -253,5 +253,99 @@ namespace pryLaboratorio2tp2
             }
 
         }
+
+        public void SoloEstrucutra (Int32 idCliente)
+        {
+            try
+            {
+                conexion.ConnectionString = cadenaConexion;
+                conexion.Open();
+
+                comando.Connection = conexion;
+                comando.CommandType = CommandType.Text;
+                comando.CommandText = "";
+
+               comando.ExecuteReader();
+
+               conexion.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+        }
+
+        public void Modificar (Int32 idCliente)
+        {
+            try
+            {
+                String sql = "";
+                sql = "UPDATE Clientes SET Limite = " + lim.ToString() + " 18000 WHERE idCliente = 2"
+
+                conexion.ConnectionString = cadenaConexion;
+                conexion.Open();
+
+                comando.Connection = conexion;
+                comando.CommandType = CommandType.Text;
+                comando.CommandText = sql;
+
+                comando.ExecuteNonQuery();
+
+                conexion.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+         }
+
+
+        public void Eliminar(Int32 idCliente)
+        {
+            try
+            {
+                String sql = "";
+                sql = "DELETE * FROM Cliente WHERE idCliente = " + idCliente.ToString();
+
+                conexion.ConnectionString = cadenaConexion;
+                conexion.Open();
+
+                comando.Connection = conexion;
+                comando.CommandType = CommandType.Text;
+                comando.CommandText = sql;
+
+                comando.ExecuteNonQuery();
+
+                conexion.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+        }
+
+        public void AgregarNuevoRegistro(Int32 idCliente)
+        {
+            try
+            {
+                String sql = "";
+                sql = "INSERT INTO Cliente (Nombre, Deuda, Limite, idAutomovil)";
+                sql = sql + "VALUES ('"+ nom +  "',0, " + lim.ToString() + "," + idAu.ToString() + ")";
+                conexion.ConnectionString = cadenaConexion;
+                conexion.Open();
+
+                comando.Connection = conexion;
+                comando.CommandType = CommandType.Text;
+                comando.CommandText = sql;
+
+                comando.ExecuteNonQuery();
+
+                conexion.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+        }
     }   
 }
