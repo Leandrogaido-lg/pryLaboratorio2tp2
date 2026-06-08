@@ -45,5 +45,11 @@ namespace pryLaboratorio2tp2
         {
             this.Close();
         }
+
+        private void editarClientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form ed = new frmEditarCliente();
+            ed.Show();
+        }
     }
 }

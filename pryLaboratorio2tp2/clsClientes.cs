@@ -264,8 +264,9 @@ namespace pryLaboratorio2tp2
                 comando.Connection = conexion;
                 comando.CommandType = CommandType.Text;
                 comando.CommandText = "";
+                comando.ExecuteNonQuery();//ejecuta comando SQL
 
-               comando.ExecuteReader();
+               
 
                conexion.Close();
             }
@@ -280,7 +281,7 @@ namespace pryLaboratorio2tp2
             try
             {
                 String sql = "";
-                sql = "UPDATE Clientes SET Limite = " + lim.ToString() + " 18000 WHERE idCliente = 2"
+                sql = "UPDATE Clientes SET Limite = " + lim.ToString() + " WHERE idCliente = " + idCliente.ToString();
 
                 conexion.ConnectionString = cadenaConexion;
                 conexion.Open();
